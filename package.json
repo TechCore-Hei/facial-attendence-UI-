@@ -8,6 +8,11 @@
     "@types/node": "^16.11.66",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "axios": "^1.1.3",
+    "babel-preset-es2015": "^6.24.1",
+    "openapi-client-axios": "^5.3.1",
+    "openapi-client-axios-typegen": "^5.3.1",
+    "openapi-typescript": "^5.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
@@ -20,7 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write"
+    "format": "prettier --write",
+    "generate:api": "typegen ./src/doc/api.yml > ./src/type/openapiType.d.ts"
   },
   "eslintConfig": {
     "extends": [
