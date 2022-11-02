@@ -1,5 +1,7 @@
 import { AxiosInstance } from 'axios';
 
 export type ContextType = {
-  client?: AxiosInstance;
+  client?: AxiosInstance,
+  isAuthentified: boolean,
+  setIsAuthentified: (status:boolean)=>void
 };
