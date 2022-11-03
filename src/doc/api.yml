@@ -3,21 +3,23 @@ info:
   version: '1.0'
   title: HEI Admin API
   description: |
-    _Programmatically connect to a computer programming [school](https://hei.school)._
+    Programmatically connect to a computer programming [school](https://hei.school).
     After [joining us](mailto:contact@hei.school),
     you can get an identification token from
     our [dev](https://dev-hei-admin.auth.eu-west-3.amazoncognito.com/oauth2/authorize?client_id=5s8cg50doahmu855rlc8fr6qmp&response_type=token&scope=email+openid&redirect_uri=https%3A%2F%2Fapi-dev.hei.school%2Fwhoami)
     or [prod](https://prod-hei-admin.auth.eu-west-3.amazoncognito.com/oauth2/authorize?client_id=i8bg538jpfu6mqmqb61m26trd&response_type=token&scope=email+openid&redirect_uri=https%3A%2F%2Fapi-prod.hei.school%2Fwhoami)
     authentication service.
     Then, start playing with our system!
+
     The implementation of our API is [publicly disclosed](https://github.com/hei-school/hei-admin-api).
     You are welcome to try and compromise it. Happy hacking!
+
 servers:
   - url: 'https://api-dev.hei.school'
   - url: 'https://api-prod.hei.school'
 
 security:
-  - BearerAuth: []
+  - BearerAuth: [ ]
 
 paths:
   '/whoami':
@@ -125,7 +127,7 @@ paths:
       tags:
         - Teaching
       summary: Create new groups or update existing groups
-      description: Update groups when `id` are provided, create them otherwise.
+      description: Update groups when id are provided, create them otherwise.
       operationId: createOrUpdateGroups
       requestBody:
         description: Groups to update
@@ -201,17 +203,17 @@ paths:
             $ref: '#/components/schemas/PageSize'
         - name: ref
           in: query
-          description: 'Filter students by ref, case is ignored'
+          description: "Filter students by ref, case is ignored"
           schema:
             type: string
         - name: first_name
           in: query
-          description: 'Filter students by first name, case is ignored'
+          description: "Filter students by first name, case is ignored"
           schema:
             type: string
         - name: last_name
           in: query
-          description: 'Filter students by last name, case is ignored'
+          description: "Filter students by last name, case is ignored"
           schema:
             type: string
       responses:
@@ -237,7 +239,7 @@ paths:
       tags:
         - Users
       summary: Create new students or update existing students
-      description: Update students when `id` are provided, create them otherwise.
+      description: Update students when id are provided, create them otherwise.
       operationId: createOrUpdateStudents
       requestBody:
         required: true
@@ -396,17 +398,17 @@ paths:
             $ref: '#/components/schemas/PageSize'
         - name: ref
           in: query
-          description: 'Filter teachers by ref, case is ignored'
+          description: "Filter teachers by ref, case is ignored"
           schema:
             type: string
         - name: first_name
           in: query
-          description: 'Filter teachers by first name, case is ignored'
+          description: "Filter teachers by first name, case is ignored"
           schema:
             type: string
         - name: last_name
           in: query
-          description: 'Filter teachers by last name, case is ignored'
+          description: "Filter teachers by last name, case is ignored"
           schema:
             type: string
       responses:
@@ -432,7 +434,7 @@ paths:
       tags:
         - Users
       summary: Create new teachers or update existing teachers
-      description: Update teachers when `id` are provided, create them otherwise.
+      description: Update teachers when id are provided, create them otherwise.
       operationId: createOrUpdateTeachers
       requestBody:
         required: true
@@ -709,7 +711,7 @@ paths:
       parameters:
         - name: status
           in: query
-          description: 'See the PaymentStatus object for its value.'
+          description: "See the PaymentStatus object for its value."
           schema:
             type: string
             default: LATE
@@ -833,6 +835,265 @@ paths:
           $ref: '#/components/responses/429'
         '500':
           $ref: '#/components/responses/500'
+
+  /places:
+    get:
+      tags:
+        - Places
+      summary: Get all places
+      operationId: getPlaces
+      responses:
+        '200':
+          description: List of places
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Place'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Places
+      summary: Create new places or update existing groups
+      description: Update places when id are provided, create them otherwise.
+      operationId: createOrUpdatePlaces
+      requestBody:
+        description: Places to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Place'
+      responses:
+        '200':
+          description: The created or updated places
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Place'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
+  /places/{id}:
+    get:
+      tags:
+        - Places
+      summary: Get place by identifier
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      operationId: getPlacesById
+      responses:
+        '200':
+          description: The identified places
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Place'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
+
+  /events/{id_event}:
+    get:
+      tags:
+        - Places
+      summary: Get event by identifier
+      parameters:
+        - name: id_event
+          in: path
+          required: true
+          schema:
+            type: string
+      operationId: getEventById
+      responses:
+        '200':
+          description: The identified event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
+
+  /events:
+    get:
+      tags:
+        - Places
+      summary: Get All Events
+      operationId: getAllEvents
+      responses:
+        '200':
+          description: List of all events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Event"
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
+    put:
+      tags:
+        - Places
+      summary: Create or update an event
+      operationId: createOrUpdateEvent
+      requestBody:
+        description: event to be create or updated
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Event"
+      responses:
+        '200':
+          description: event created or updated
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Event"
+
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
+  /events/{id_event}/eventParticipant:
+    get:
+      tags:
+        - Places
+      summary: get All participant to one event
+      operationId: getAllParticipantToOneEvent
+      parameters:
+        - name: page
+          in: query
+          schema:
+            $ref: '#/components/schemas/Page'
+        - name: pageSize
+          in: query
+          schema:
+            $ref: '#/components/schemas/PageSize'
+        - name: id_event
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: list of eventParticipant to an event
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EventParticipant"
+
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
+    put:
+      tags:
+        - Places
+      summary: Create eventParticipants
+      operationId: createEventParticipants
+      parameters:
+        - name: id_event
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreateEventParticipants'
+      responses:
+        '200':
+          description: List of participants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventParticipant'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+
+
 components:
   securitySchemes:
     BearerAuth:
@@ -870,6 +1131,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/InternalServerException'
+
   schemas:
     Whoami:
       properties:
@@ -1042,11 +1304,10 @@ components:
           format: date-time
     Page:
       type: integer
-      description: Start at `1`
+      description: Start at 1
     PageSize:
       type: integer
-      description: Cannot exceed `500`
-
+      description: Cannot exceed 500
     Exception:
       type: object
       properties:
@@ -1084,3 +1345,66 @@ components:
       example:
         type: InternalServerException
         message: Unexpected error
+
+    Place:
+      type: object
+      properties:
+        id:
+          type: string
+        location:
+          type: string
+          example: "HEI Ivandry"
+        city:
+          type: string
+
+    Event:
+      type: object
+      properties:
+        idEvent:
+          type: string
+        eventName:
+          type: string
+          example: "COURSE"
+        eventDescription:
+          type: string
+          example: "PROG2 Course"
+        startTime:
+          type: string
+          format: date-time
+          example: "2013-05-30T23:38:23.085Z"
+        endingTime:
+          type: string
+          format: date-time
+          example: "2013-05-30T23:38:23.085Z"
+        place:
+          type: string
+          example: "HEI Ivandry"
+        responsible:
+          type: string
+          example: "Lou Andria"
+
+    CreateEventParticipants:
+      type: object
+      properties:
+        event_id:
+          type: string
+        group_id:
+          type: string
+
+    EventParticipant:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "uuid"
+        ref:
+          type: string
+          example: "STD21034"
+        event_id:
+          type: string
+        status:
+          type: string
+          enum:
+            - EXPECTED
+            - HERE
+            - MISSING
