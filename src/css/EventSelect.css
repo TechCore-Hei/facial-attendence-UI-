@@ -77,22 +77,52 @@ body{
 
 .event__option{
     font-size: 20px;
-    padding: 10px;
+    padding: 10px 15px;
     margin-right: 5px;
     cursor: pointer;
 }
+
+.event__option:hover{
+    transform: scale(1.3);
+    background: rgb(241, 241, 241);
+}
+
 .event-option__container{
     position: relative;
+    z-index: 100;
 }
 
 .event__option__details{
-    position: absolute;
-    z-index: 2;
-    display: flex;
+    display: none;
+}
+.event__option__details__shown{
     flex-direction: column;
+    position: absolute;
+    top: 47px;
+    right: 10px;
+    z-index: 100;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0 ,0 ,0.2);
+    background: #ffff;
 }
 
-.event__option:hover{
-    background-color: gainsboro;
-    transform: scale(1.2);
+.event__option:hover .event__option__details{
+   display: block;
 }
+
+.event__option__details__shown span {
+    color: black;
+    display: block;
+    text-align: center;
+    width: 120px;
+    height: 40px;
+    font-size: 18px;
+    padding:8px 4px;
+}
+
+.event__option__details__shown span:hover{
+    background: #f1f1f1;
+    transition: all 0.08s ease;
+    display: block;
+    cursor: pointer;
+}
+

@@ -1,11 +1,21 @@
 import React from 'react';
 import pict from '../img/logo.png';
 import '../css/EventSelect.css';
+import { useState } from 'react';
+import Modal from './modal/Modal';
+
 
 export default function SelectEvent() {
   const cours = ' WEB1';
   const hours = '02-11-2022/8:00 - 10:00';
   const group = 'H1';
+  const [ isActive , setIsActive ] = useState<boolean>(false)
+  const [ displayDetails , setDisplayDetails ] = useState<boolean>(false)
+
+  const handleModal = (): void => {
+      setIsActive(!isActive)
+    setDisplayDetails(false)
+  } 
 
   return (
       <div className="container-event__list">
@@ -37,15 +47,27 @@ export default function SelectEvent() {
                   {group}
                </p>
                <span className="status"> Terminée </span>
+               
+
                <div className='event-option__container'>
-                  <div className='event__option'>
+                  <div className='event__option' onClick={()=> setDisplayDetails(!displayDetails) } >
                      <i className='fa fa-ellipsis-v'/>
                   </div>
-                  <div className='event__option__details'>
-                     <span>details</span>
-                     <span>modifier</span>
+                  <div className={`${displayDetails ? 'event__option__details__shown' : 'event__option__details'}`}>
+                     <span onClick={()=> { handleModal() }} >Supprimer</span>
+                     <span >Modifier</span>
+                     <span onClick={()=> setDisplayDetails(!displayDetails) }>Terminer</span>
                   </div>
                </div>
+
+              <Modal handleModal={()=>handleModal()} isActive={isActive} >
+                  <h2> Are you sure to delete ? </h2>
+                   <div className='delete_confirmation'>
+                      <span>Delete</span>
+                      <span>Cancel</span>
+                   </div>
+              </Modal>
+
             </div>
          </div>
       </div>
