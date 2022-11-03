@@ -7,7 +7,14 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { DataProvider } from './context/ApiContext';
 
+<<<<<<< HEAD
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+=======
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+>>>>>>> d46f40a (feat: create interface for event)
 root.render(
   <React.StrictMode>
     <DataProvider>
