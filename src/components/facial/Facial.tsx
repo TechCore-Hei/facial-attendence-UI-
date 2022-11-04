@@ -31,7 +31,7 @@ function Facial(props: Props) {
             .then(stream => {
                 let video = videoRef.current;
                 video!.srcObject = stream;
-                {video? video!.play().catch((err)=>console.log(err)):""}
+                {video!.play().catch((err)=>console.log(err))}
             })
     }
 
