@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDataProvider } from '../context/ApiContext';
 
 const Places = () => {
-    const places: string[] = ["HEI-IVANDRY", "ALLIANCE-ANDAVAMAMBA", "AUTRE"]
+    const { client } = useDataProvider();
+    const [ place, setPlace] = useState<string[]>(["HEI-Ivandry"])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const getPlace = ()=>{
+        client!.get("/places")
+            .then(response=> {
+                setPlace(response.data)
+            })
+    }
+
+    useEffect(() => {
+        getPlace()
+    }, [getPlace])
 
     return (
         <div>
             <select className="input" name="place" id="place">
-                {places.map((e,k) => (<option key={k} >{e}</option>))}
+                {place?.map((e,k) => (<option key={k} >{e}</option>))}
             </select>
         </div>
     );

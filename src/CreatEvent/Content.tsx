@@ -3,7 +3,6 @@ import Types from "./Types";
 import Places from "./Places";
 import Responsible from "./Responsibles";
 import Participant from "./Participants";
-import Input from "./Input";
 import "./Style/Style.css";
 import { Event } from "../type/event"
 
