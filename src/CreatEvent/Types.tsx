@@ -7,7 +7,7 @@ interface Type {
 
 const Types = (/**props:Type*/) => {
     const Type_List: string[] = ["Cours", "Réunion", "Fête"];
-   // const {inputRef,inputValue} = props
+   
 
     return (
         <div>

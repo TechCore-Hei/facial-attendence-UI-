@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDataProvider } from '../../context/ApiContext';
 import './Login.css';
@@ -9,6 +9,8 @@ const Login = () => {
     const { client, setIsAuthentified } = useDataProvider();
 
     const loginNow = (userDetails:{username: string, password: string}) => {
+        /**Pour le moment on sera diriger directement au liste des événement */
+        navigate("/event")
         client!.post("/login", {
             userDetails
         }).then(response => {

@@ -1,11 +1,13 @@
 import React from 'react';
 import pict from '../img/logo.png';
 import '../css/EventSelect.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function SelectEvent() {
   const cours = ' WEB1';
   const hours = '02-11-2022/8:00 - 10:00';
   const group = 'H1';
+  const navigate = useNavigate();
 
   return (
       <div className="container-event__list">
@@ -20,7 +22,7 @@ export default function SelectEvent() {
 
          <div className='event__container'>
             <div className='create-event'>
-                  <label className='create-event__label'>Créer un évènement</label>
+                  <label className='create-event__label' onClick={()=>navigate("/createevent")}>Créer un évènement</label>
                   <i className='fa fa-plus user-details'/>
             </div>
             <div className="event__element">
