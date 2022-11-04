@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import 'font-awesome/css/font-awesome.min.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { DataProvider } from './context/ApiContext';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <DataProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </DataProvider>
   </React.StrictMode>
 );
 

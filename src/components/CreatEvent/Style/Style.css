@@ -1,0 +1,80 @@
+.body {
+    width: 40vw;
+    height: 95vh;
+    margin: 1% 30% 0 30%;
+    box-shadow: 0 0 10px gainsboro;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: whitesmoke;
+    align-items: center;
+    background-image: url("fond.jpg");
+    background-size: cover;
+    font-weight: bold;
+}
+
+.title {
+    width: 20vw;
+    height: 5vh;
+    margin-top: 2%;
+    border: 2px solid gold;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+}
+.addChoice{
+    display: flex;
+}
+
+.content .type, .place, .date, .participants, .responsible, .obligation, .button, .output{
+    padding-top: 2.5%;
+}
+.plus{
+    margin-left: 10%;
+    padding-top: 3px;
+}
+.plus .input {
+    display: flex;
+    flex-direction: row;
+}
+.date {
+    display: flex;
+    flex-direction: row;
+    }
+.date .start {
+    display: flex;
+    flex-direction: column;
+}
+.date .end {
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.participants {
+    border: 1px solid #ffffff;
+    text-align: left;
+    padding-left: 20px;
+    width: 25vw;
+}
+.button .add, .create, .cancel{
+    margin-right: 2%;
+    font-size: medium;
+}
+.button .cancel {
+    text-decoration: underline;
+}
+.output {
+    border: 1px solid #ffffff;
+    width: 28vw;
+    height: 15vh;
+}
+.input{
+    width: 25vw;
+    height: 5vh;
+    text-align: center;
+    outline: none;
+    border-radius: 10px;
+    background-color: rgb(250,150,20,0.24);
+    color: beige;
+}
